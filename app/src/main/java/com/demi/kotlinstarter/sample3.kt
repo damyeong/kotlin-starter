@@ -4,6 +4,8 @@ import java.util.*
 
 fun main() {
     nullCheck()
+    ignoreNulls("test")
+
 }
 
 // 7. Nullable & NonNull
@@ -27,13 +29,19 @@ fun nullCheck() {
     val fullName = "$name " + (lastName ?: "has NO LASTNAME")
 
     println(fullName)
-
-    // !!
-    //
-
-
 }
 
 fun ignoreNulls(str: String?) {
+    // Assert 같은.. 절대로 null 일 리 없어! 라는 뜻으로 !! 쓴다.
+    // 이때는 ? 물음표를 안 써도 된다.
+    // 정말 100% 확실하지 않은 이상 사용하면 안 된다. NPE 유발하므로.
+    val mNotNull: String = str!!
+    val upper = mNotNull.uppercase()
+    println(upper)
 
+    // let : 자신의 리시버 객체(email)를 람다식 내부로 옮겨준다. email 이 null 일 경우 let 내부 연산은 이루어지지 않는다.
+    val email: String? = str
+    email?.let {
+        println("My email is $email")
+    }
 }
